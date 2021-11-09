@@ -2,11 +2,12 @@
   "name": "bulltycoons-minter-server",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/index.js",
+  "main": "dist/src/index.js",
   "scripts": {
     "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
     "build": "tsc",
     "prestart": "npm run build",
+    "start": "node .",
     "serve": "nodemon src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

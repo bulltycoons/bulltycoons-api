@@ -43,7 +43,7 @@ export const updateMetadataAttributesById = async (req: Request, res: Response, 
         assert(multiplier, "multiplier is required");
         const response = await runTransaction(db, async (transaction) => {
             const metadata = await transaction.get(metadataDoc);
-            if (!metadata.exists()) throw "Metadata does not exist";
+            if (!metadata.exists()) throw new Error("Metadata does not exist");
             const attributes: Attribute[] = metadata.data().attributes;
             // Run through the attributes list and find the fighter attributes to increase...
             const fighterTraits = ["Agility","Strength","Stamina","Defence","Offence","Speed"];
