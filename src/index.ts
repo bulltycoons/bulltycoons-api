@@ -1,27 +1,24 @@
-import express from "express";
+import express, { json as expressJson } from "express";
+import { PORT } from "./config";
+import cors from "cors";
+import { json as bodyParserJson } from "body-parser";
+import { metadataRoute } from "../routes/metadata";
+
 const app = express();
-const port = 1234; // default port to listen
+
+app.use(cors());
+app.use(expressJson());
+app.use(bodyParserJson());
+
+app.use('/api', metadataRoute);
 
 // define a route handler for the default home page
 app.get( "/healthcheck", ( req, res ) => {
     res.send( "Perfectly working!" );
 });
 
-app.get("/metaverse/:id", (req, res) => {
-    res.header("Content-Type",'application/json');
-    const id = req.params.id;
-    try {
-        const verse = require(`../metaverses/${id}.json`);
-        res.status(200);
-        res.send(verse);
-    } catch (err) {
-        res.status(404);
-        res.send({ message: "Not found" });
-    }
-});
-
 // start the Express server
-app.listen( port, () => {
+app.listen( PORT, () => {
     // tslint:disable-next-line:no-console
-    console.log( `server started at http://localhost:${ port }` );
+    console.log( `server started at http://localhost:${ PORT }` );
 });
