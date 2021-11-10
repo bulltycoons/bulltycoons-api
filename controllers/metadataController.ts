@@ -40,7 +40,7 @@ export const updateMetadataAttributesById = async (req: Request, res: Response, 
     const { multiplier } = req.body;
     const metadataDoc = doc(db, COLLECTION_NAME, `${id}`);
     try {
-        assert(multiplier, "multiplier is required");
+        assert(multiplier !== undefined, "multiplier is required");
         const response = await runTransaction(db, async (transaction) => {
             const metadata = await transaction.get(metadataDoc);
             if (!metadata.exists()) throw new Error("Metadata does not exist");
@@ -52,6 +52,9 @@ export const updateMetadataAttributesById = async (req: Request, res: Response, 
                 if (fighterTraits.includes(attr.trait_type)) {
                     attr.value = Number(attr.value) + Number(multiplier);
                 }
+                if (attr.trait_type == "Wins" && multiplier > 0) attr.value = Number(attr.value) + 1;
+                if (attr.trait_type == "Loses" && multiplier == 0) attr.value = Number(attr.value) + 1;
+
                 newAttributes.push(attr);
             });
             transaction.update(metadataDoc, {
