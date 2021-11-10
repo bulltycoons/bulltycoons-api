@@ -52,8 +52,8 @@ export const updateMetadataAttributesById = async (req: Request, res: Response, 
                 if (fighterTraits.includes(attr.trait_type)) {
                     attr.value = Number(attr.value) + Number(multiplier);
                 }
-                if (attr.trait_type == "Wins" && Number(multiplier) > 0) attr.value = Number(attr.value) + 1;
-                if (attr.trait_type == "Loses" && Number(multiplier) === 0) attr.value = Number(attr.value) + 1;
+                if (attr.trait_type === "Wins" && Number(multiplier) > 0) attr.value = Number(attr.value) + 1;
+                if (attr.trait_type === "Loses" && Number(multiplier) === 0) attr.value = Number(attr.value) + 1;
 
                 newAttributes.push(attr);
             });
