@@ -6,6 +6,7 @@ import { metadataRoute } from "../routes/metadata";
 import { contractRoute } from "../routes/contract";
 import { teamRoute } from "../routes/team";
 import { roadmapRoute } from "../routes/roadmap";
+import { imageRoute } from "../routes/image";
 
 const app = express();
 
@@ -17,6 +18,7 @@ app.use('/api', metadataRoute);
 app.use('/contract', contractRoute);
 app.use('/team', teamRoute);
 app.use('/roadmap', roadmapRoute);
+app.use('/image', imageRoute);
 
 // define a route handler for the default home page
 app.get( "/healthcheck", ( req, res ) => {
