@@ -16,7 +16,7 @@ export const loadImageDeprecated = async (req:Request, res:Response, next:NextFu
         res.send(Buffer.from(response.data, "utf-8"));
     })
     .catch(err => {
-        console.log(err, "<== Loading File Error for id ", id);
+        // console.log(err, "<== Loading File Error for id ", id);
         res.status(404).send("Image not loaded");
     });
     
