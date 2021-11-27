@@ -18,7 +18,7 @@ roadmapRoute.get('/', (req, res, next) => {
             ],
             bg: "#232323"/* "#800324" */,
             color: "#ffffff"
-            
+
         },
         {
             title: "Q4 2021",
